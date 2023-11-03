@@ -55,7 +55,7 @@ public class HashTable {
         int j = h2(key);
         int iterations = 0;
 
-        while (table[i] != null && table[i].removed) {
+        while (table[i] != null && !table[i].removed) {
             i = (i + j) % tableSize;
             iterations++;
             if (iterations >= tableSize) return -1;
