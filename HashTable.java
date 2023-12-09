@@ -28,6 +28,13 @@ public class HashTable {
         }
     }
 
+    public void remove(String key) {
+        int i = findKey(key);
+        if (i == -1)
+            return;
+        table[i].removed = true;
+    }
+
     private int probe(String key) {
         int i = h1(key);
         int j = h2(key);
@@ -36,7 +43,8 @@ public class HashTable {
         while (table[i] != null && !table[i].removed) {
             i = (i + j) % tableSize;
             iterations++;
-            if (iterations >= tableSize) return -1;
+            if (iterations >= tableSize)
+                return -1;
         }
         return i;
     }
